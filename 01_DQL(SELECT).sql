@@ -115,3 +115,65 @@ FROM EMPLOYEE;
 
 --============================================================================
 
+/*
+    <WHERE 절>
+    조회하고자하는 테이블로부터 특정 조건에 만족하는 데이터만 조회할 때 사용
+    조건식에서도 다양한 연산자 사용이 가능하다.
+    [표현법]
+    SELECT 컬럼, 컬럼, 컬럼 연산
+    FROM 테이블
+    WHERE 조건;
+    
+    >>비교연산<<
+    >, <, >=, <= : 대소비교
+    = : 양쪽이 같다
+    !=, ^=, <> : 양쪽이 다르다
+*/
+
+-- EMPLOYEE에서 부서코드가 'D5'인 사람들만 조회(모든컬럼)
+SELECT *
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D5';
+
+-- EMPLOYEE에서 부서코드가 'D9'인 사원들만 조회(모든컬럼)
+SELECT *
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D9';
+
+
+-- EMPLOYEE에서 부서코드가 'D1'인 사원명, 급여, 부서코드 조회
+SELECT EMP_NAME, SALARY, DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D1';
+
+-- EMPLOYEE에서 부서코드가 'D1'이 아닌 사원명, 급여, 부서코드 조회
+SELECT EMP_NAME, SALARY, DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE != 'D1';
+
+--월급이 400만원 이상인 사원들의 사원명, 부서코드, 급여 조회
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE SALARY >= 4000000;
+
+--------------------------------- 실습 ---------------------------------
+--1. 급여가 300만원 이상인 사원들의 사원명, 급여, 입사일, 연봉(별칭 -> 연봉)조회
+SELECT EMP_NAME, SALARY, HIRE_DATE, SALARY * 12 AS 연봉
+FROM EMPLOYEE
+WHERE SALARY >= 3000000;
+
+--2. 연봉이 5천만원 이상인 사원들의 사원명, 급여, 연봉(별칭 -> 연봉), 부서코드 조회
+SELECT EMP_NAME, SALARY, SALARY * 12 AS 연봉, DEPT_CODE
+FROM EMPLOYEE
+WHERE SALARY * 12 >= 50000000;
+
+--3. 직급코드가 'J3'가 아닌 사원들의 사번, 사원명, 직급코드, 퇴사여부 조회
+SELECT EMP_ID, EMP_NAME, JOB_CODE, EMP_YN
+FROM EMPLOYEE
+WHERE JOB_CODE != 'J3';
+
+--4. 급여가 350만원 이상이고 600만원 이하인 모든 사원의 사원명, 사번, 급여조회
+    -- 중간에 AND, OR로 조건을 연결할 수 있다.
+SELECT EMP_NAME, EMP_ID, SALARY
+FROM EMPLOYEE
+WHERE SALARY >= 3500000 AND SALARY <= 6000000;
