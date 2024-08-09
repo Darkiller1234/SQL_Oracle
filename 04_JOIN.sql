@@ -161,7 +161,7 @@ ORDER BY DEPT_CODE NULLS FIRST, DEPT_ID NULLS FIRST;
 
 ---------------------------------------------------------------------
 /*
-    3. 등가조인(NON EQUAL JOIN)
+    3. 비등가조인(NON EQUAL JOIN)
     매칭시킬 컬럼에 대한 조건 작성시 '='를 사용하지 않는 조인문
     ANSI구문사용시 JOIN ON만 사용가능
 */
